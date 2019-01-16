@@ -26,3 +26,15 @@ ACFDSSCloudWatch input datasets should follow this schema:
  More info about CloudWatch metrics: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudwatch.html#CloudWatch.Client.put_metric_data
 
 
+## Installing from repository
+ * On your DSS instance go to `Administration > Plugins`
+ * Select the `Advanced` option
+ * Set the repository address https://github.com/acloudfrontier/ACFDSSCloudWatch
+ * Use the `master` branch
+
+![Install](./images/screenshot3.png)
+
+Check it!
+
+![Install](./images/screenshot4.png)
+
