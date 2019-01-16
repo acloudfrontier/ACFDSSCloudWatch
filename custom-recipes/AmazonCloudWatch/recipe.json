@@ -1,0 +1,50 @@
+// This file is the descriptor for the Custom code recipe acf_amazon_cloud_watch
+{
+    // Meta data for display purposes
+    "meta" : {
+        "label" : "ACFDSSCloudWatch",
+        "description" : "Plugin designed by ACF to push custom metric data from Dataiku to Amazon CloudWatch, using CloudWatch's API and written in Python by JL.",
+        "icon" : "icon-dashboard"
+    },
+
+    "kind" : "PYTHON",
+
+    "inputRoles" : [
+        {
+            "name": "metrics",
+            "arity": "NARY",
+            "required": true,
+            "acceptsDataset": true
+        }
+    ],
+    "outputRoles" : [
+        {
+            "name": "feedback_output",
+            "label": "Feedback dataset",
+            "description": "Dataset containing the tokens returned from Amazon CloudWatch from last API call, for each dataset. This dataset has to be configured as an input for the second execution and on, to avoid double processing the same data.",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset": true
+        }
+    ],
+
+    "params": [
+        {
+            "name": "access_key",
+            "label" : "Amazon User's Access Key",
+            "type": "STRING",
+            "description":"",
+            "mandatory" : true
+        },
+        {
+            "name": "secret_key",
+            "label" : "Amazon User's Secret Key",
+            "type": "PASSWORD",
+            "description":"",
+            "mandatory" : true
+        }
+    ],
+
+    "resourceKeys" : []
+
+}
