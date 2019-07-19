@@ -99,10 +99,8 @@ def process_dataset (dataset_df, token_value):
             count += 1
         except Exception as ex:
             print(ex)
-    dataset_new_token = datetime.datetime.now().isoformat()
-    print('[ACF_CLOUDWATCH plugin] - ' + str(count) + ' rows successfully processed. Token value: ' + dataset_new_token)
     print('[ACF_CLOUDWATCH plugin] - %d errors' % errors)
-    return (dataset_new_token, count, errors)
+    return (count, errors)
 
 #############################################################
 # Function to copnvert all non-standard columns as dimensions
@@ -155,10 +153,15 @@ def process_inputs():
     
 def process_input(dsname, feedback_df):
     print('Processing dataset: %s' % dsname)
-    df = dataiku.Dataset(dsname).get_dataframe()
-    df = build_dimensions(df)
     token_value = get_token(feedback_df, dsname)
-    token_value, count, errors = process_dataset(df, token_value)
+    df = dataiku.Dataset(dsname).get_dataframe()
+    count = 0
+    errors = 0
+    if not df.empty:
+        df = build_dimensions(df)
+        count, errors = process_dataset(df, token_value)
+    token_value = datetime.datetime.now().isoformat()
+    print('[ACF_CLOUDWATCH plugin] - ' + str(count) + ' rows successfully processed. Token value: ' + token_value)
     output_feedback.append({ "key": dsname, "value": token_value, "count": count, "errors": errors })
     print('%s input processed correctly.' % dsname)
 
