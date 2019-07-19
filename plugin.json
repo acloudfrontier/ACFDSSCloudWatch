@@ -7,7 +7,7 @@
     "id" : "ACFDSSCloudWatch",
 
     // Version. It is highly recommended to use Semantic Versioning
-    "version" : "0.0.2",
+    "version" : "0.0.3",
 
 
     // Meta data for display purposes
